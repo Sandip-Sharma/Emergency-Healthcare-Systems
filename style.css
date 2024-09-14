@@ -1,0 +1,102 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+nav{
+    height: 10vh;
+    /* background-color: yellowgreen; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    justify-content: space-around;
+}
+.na{
+    width: 30%;
+    /* background-color: azure; */
+    display: flex;
+    justify-content: space-between;
+}
+.logo{
+    height: 80px;
+}
+.medibtn{
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    font-weight: 500;
+    background-color: #99ff66;
+    border-color: transparent;
+}
+.medibtn1{
+    /* margin-left: 20px; */
+    width: 150px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 20px;
+    font-weight: 400;
+    background-color: #99ff66;
+    border-color: transparent;
+}
+
+ section{
+    display: flex;
+    border-radius: 20px;
+    height: 95vh;
+    background-color: #83bc67;
+    width: 97vw;
+    background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+    margin-bottom: 20px;
+}
+
+
+.cont{
+    width: 50%;
+    /* background-color: rgb(149, 183, 171); */
+    margin-left: 50px;
+    margin-top: 200px;
+    
+}
+
+.main h1{
+    color: white;
+    font-size: 60px;
+    margin-bottom: 20px;
+
+}
+.main h3{
+    font-size: 25px;
+    font-weight: 200;
+    color: white;
+    margin-bottom: 40px;
+}
+.right{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgb(149, 183, 171); */
+}
+.right img{
+    height: 500px;
+}
+.baap{
+    color: white;
+    margin-top: 60px;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+.baap h1{
+    font-size: 70px;
+}
+.baap p{
+    margin-top: -10px;
+    font-size: 20px;
+}

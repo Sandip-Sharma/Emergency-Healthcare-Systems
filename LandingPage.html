@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT-like Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .chat-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #chat-output {
+            height: 400px;
+            overflow-y: scroll;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+            margin-bottom: 10px;
+        }
+        #chat-input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        #send-btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div id="chat-output"></div>
+        <input type="text" id="chat-input" placeholder="Type your query here..." />
+        <button id="send-btn">Send</button>
+    </div>
+
+    <script>
+        document.getElementById('send-btn').addEventListener('click', async () => {
+            const apiKey = 'peJ3Tnn3e98Hy51qn1kdYQeO4OiBZ1sG';
+            const externalUserId = '<replace_external_user_id>';
+            const chatInput = document.getElementById('chat-input').value;
+
+            // Step 1: Create Chat Session
+            const createSessionResponse = await fetch('https://api.on-demand.io/chat/v1/sessions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': apiKey
+                },
+                body: JSON.stringify({
+                    "pluginIds": [],
+                    "externalUserId": externalUserId
+                })
+            });
+            const sessionData = await createSessionResponse.json();
+            const sessionId = sessionData.data.id;
+
+            // Step 2: Submit Query
+            const queryResponse = await fetch(`https://api.on-demand.io/chat/v1/sessions/${sessionId}/query`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': apiKey
+                },
+                body: JSON.stringify({
+                    "endpointId": "predefined-openai-gpt4o",
+                    "query": chatInput,
+                    "pluginIds": ["plugin-1726236428", "plugin-1726227923"],
+                    "responseMode": "sync"
+                })
+            });
+            const queryResult = await queryResponse.json();
+
+            // Display response in chat output
+            const chatOutput = document.getElementById('chat-output');
+            chatOutput.innerHTML += `<p><strong>You:</strong> ${chatInput}</p>`;
+            chatOutput.innerHTML += `<p><strong>Response:</strong> ${queryResult.data.result}</p>`;
+        });
+    </script>
+</body>
+</html>
